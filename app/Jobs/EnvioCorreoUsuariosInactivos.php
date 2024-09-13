@@ -32,7 +32,6 @@ class EnvioCorreoUsuariosInactivos implements ShouldQueue
     {
       
         $dateWarning = now()->subDays(30);
-
         // Obtener usuarios que no han iniciado sesión desde hace 30 días
         $inactiveUsers = User::where('last_login', '<', $dateWarning)->get();
         foreach ($inactiveUsers as $usuario) {

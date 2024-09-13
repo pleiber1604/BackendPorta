@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         
-        $schedule->command('app:enviar-correos')->everyMinute();
+        $schedule->command('app:enviar-correos')->dailyAt('13:00');
     }
 
     /**

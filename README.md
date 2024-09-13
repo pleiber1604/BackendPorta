@@ -40,7 +40,7 @@ El proceso de instalación :
 - Para el envío de correo se configuró como driver: log en el .env , para que envie los correos al archivo: storage/logs/laravel.log y de esa manera evitar tengan que apuntar a un smtp para el envío de correos. De tal manera que para verificar su envio se debe ir al ruta indicada.
 - En los seeders ya se crean usuarios con fecha de last_login de mas de 30 días para probar el envio de correos a esos usuarios.
 -  Para  las tareas programadas se utilizó una un job que crea una cola en la tabla jobs de la base de datos. Para dejar las cosas simples y no crear crons dependiendo del so coloco los comandos para generar la cola y consumirla repectivamente.
-      php artisan app:enviar-correos
+      php artisan app:enviar-correos y 
       php artisan queue:work
     
 

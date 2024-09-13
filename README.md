@@ -7,60 +7,41 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Instalación
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El proceso de instalación :
+- clonando el proyecto
+    git clone https://github.com/pleiber1604/BackendPorta.git
+- ubicarnos en la carpeta del proyecto
+    cd nombre_proyecto
+- instalando las dependencias del proyecto
+     composer install
+     npm install  
+- Creando el archivo de variables de entorno
+      cp .env.example .env
+- creando API KEY
+    php artisan key:generate
+- Se deben agregar las credenciales de la base de datos en el archivo .env
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3307
+      DB_DATABASE=laravel
+      DB_USERNAME=root
+      DB_PASSWORD=
+- Ejecutar las migraciones
+      php artisan migrate
+- ejecutar seeders
+      php artisan db:seed
+- ejectutar el comando npm run dev o npm run build (este ultimo si se quieren ya los assets compilados)
+- Ya con esto ejecutando php artisan serve pueden ejecturar el servidor de pruebas que levantala la aplicación o si desean pueden crear un virtual host para desplegarlo en el navegador
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Notas Importantes
+- EL proyecto esta relizado con laravel + vue y vite en una unica arquitectura para facilitar su revisión, es decir, no se separo el front y back. Pueden ver los componentes en la carpeta resources/js del proyecto.
+- Para el envío de correo se configuró como driver: log en el .env , para que envie los correos al archivo: storage/logs/laravel.log y de esa manera evitar tengan que apuntar a un smtp para el envío de correos. De tal manera que para verificar su envio se debe ir al ruta indicada.
+- En los seeders ya se crean usuarios con fecha de last_login de mas de 30 días para probar el envio de correos a esos usuarios.
+-  Para  las tareas programadas se utilizó una un job que crea una cola en la tabla jobs de la base de datos. Para dejar las cosas simples y no crear crons dependiendo del so coloco los comandos para generar la cola y consumirla repectivamente.
+      php artisan app:enviar-correos
+      php artisan queue:work
+    
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

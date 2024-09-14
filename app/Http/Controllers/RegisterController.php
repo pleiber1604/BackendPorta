@@ -3,22 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Hash;
+use App\Http\Requests\SaveUserRequest;
+
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    public function register(SaveUserRequest $request)
     {
-        // Validación de los datos del registro
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'phone_number' => 'string|max:20',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-    
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

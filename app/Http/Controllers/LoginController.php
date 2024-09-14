@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\Auth;
-use Hash;
 
 class LoginController extends Controller
 {
-    public function login(Request $request)
+    public function login(LoginUserRequest $request)
     {
-        // Validación de credenciales
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Actualiza la última fecha de inicio de sesión
             $user = Auth::user();
